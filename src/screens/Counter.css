@@ -1,0 +1,19 @@
+.counter__main-container {
+  padding: 5px;
+}
+
+.counter__counter-value {
+  font-size: 20px;
+}
+
+.counter__prime-checker-container {
+  padding: 5px;
+}
+
+.counter__buttons-container {
+  width: 200px;
+}
+
+.counter__buttons-container > *:not(:last-child) {
+  margin-bottom: 10px;
+}

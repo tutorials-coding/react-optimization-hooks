@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react'
 
-import { Home } from './screens'
+import { Home, Counter } from './screens'
 import { TodoProvider, todoReducer } from './state'
 
 export default function App() {
@@ -16,8 +16,11 @@ export default function App() {
   ])
 
   return (
-    <TodoProvider state={todoState} dispatch={dispatchTodo}>
-      <Home />
-    </TodoProvider>
+    <>
+      {/* <TodoProvider state={todoState} dispatch={dispatchTodo}>
+        <Home />
+      </TodoProvider> */}
+      <Counter />
+    </>
   )
 }
