@@ -1,10 +1,14 @@
-import React, { useCallback, memo, useContext } from 'react'
+import React, { useCallback, memo, useContext, useEffect } from 'react'
 
 import { TodoForm } from './TodoForm'
-import { TodoContext } from '../../state'
+import { TodoDispatchContext } from '../../state'
 
 function TodoFormContainerInner() {
-  const { dispatchTodo } = useContext(TodoContext)
+  useEffect(() => {
+    console.log('TodoFormContainerInner rendered')
+  })
+
+  const dispatchTodo = useContext(TodoDispatchContext)
 
   const handleSubmit = useCallback(
     (text) => {

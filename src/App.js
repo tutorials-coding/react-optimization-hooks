@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 
 import { Home } from './screens'
-import { TodoContext, todoReducer } from './state'
+import { TodoContext, TodoDispatchContext, todoReducer } from './state'
 
 export default function App() {
   const [todoState, dispatchTodo] = useReducer(todoReducer, [
@@ -16,10 +16,10 @@ export default function App() {
   ])
 
   return (
-    <>
-      <TodoContext.Provider value={{ todoState, dispatchTodo }}>
+    <TodoContext.Provider value={todoState}>
+      <TodoDispatchContext.Provider value={dispatchTodo}>
         <Home />
-      </TodoContext.Provider>
-    </>
+      </TodoDispatchContext.Provider>
+    </TodoContext.Provider>
   )
 }

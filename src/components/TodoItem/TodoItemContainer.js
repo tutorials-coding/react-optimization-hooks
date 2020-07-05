@@ -1,10 +1,10 @@
 import React, { useCallback, memo, useContext } from 'react'
 
 import { TodoItem } from './TodoItem'
-import { TodoContext } from '../../state'
+import { TodoDispatchContext } from '../../state'
 
 function TodoItemContainerInner({ item }) {
-  const { dispatchTodo } = useContext(TodoContext)
+  const dispatchTodo = useContext(TodoDispatchContext)
 
   const editTodoItemText = useCallback(
     (value) => {

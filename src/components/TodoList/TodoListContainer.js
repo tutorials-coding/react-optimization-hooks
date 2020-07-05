@@ -4,7 +4,7 @@ import { TodoList } from './TodoList'
 import { TodoContext } from '../../state'
 
 function TodoListContainerInner() {
-  const { todoState } = useContext(TodoContext)
+  const todoState = useContext(TodoContext)
 
   return <TodoList items={todoState} />
 }
