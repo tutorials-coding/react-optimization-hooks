@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react'
+import React, { memo } from 'react'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -13,23 +13,17 @@ function TodoItemInner({
   onDeleteClick,
   onTextUpdate,
 }) {
-  const handleIsCompleteChange = useCallback(
-    (event) => {
-      onToggleCheck(event.target.value)
-    },
-    [onToggleCheck]
-  )
+  const handleIsCompleteChange = (event) => {
+    onToggleCheck(event.target.value)
+  }
 
-  const handleTextChange = useCallback(
-    (event) => {
-      onTextUpdate(event.target.value)
-    },
-    [onTextUpdate]
-  )
+  const handleTextChange = (event) => {
+    onTextUpdate(event.target.value)
+  }
 
-  const handleDelete = useCallback(() => {
+  const handleDelete = () => {
     onDeleteClick()
-  }, [onDeleteClick])
+  }
 
   return (
     <Card>
