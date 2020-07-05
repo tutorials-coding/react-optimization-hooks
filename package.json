@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "@welldone-software/why-did-you-render": "^4.2.5",
     "bootstrap": "^4.5.0",
-    "eslint": "^7.4.0",
+    "eslint": "6.6.0",
     "eslint-plugin-react": "^7.20.3",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
