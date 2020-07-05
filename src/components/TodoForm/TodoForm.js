@@ -1,4 +1,4 @@
-import React, { useState, memo, useCallback } from 'react'
+import React, { useState, memo } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
@@ -6,15 +6,12 @@ import './TodoForm.css'
 
 function TodoFormInner({ onSubmit }) {
   const [text, setText] = useState('')
-  const handleChange = useCallback(
-    (text) => {
-      setText(text)
-    },
-    [setText]
-  )
-  const handleSubmit = useCallback(() => {
+  const handleChange = (text) => {
+    setText(text)
+  }
+  const handleSubmit = () => {
     onSubmit(text)
-  }, [text, onSubmit])
+  }
 
   return (
     <div className="todo-form__form-container">
