@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo, useCallback } from 'react'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -6,13 +6,31 @@ import Col from 'react-bootstrap/Col'
 
 import './TodoItem.css'
 
-export function TodoItem({
+function TodoItemInner({
   text,
   isComplete,
   onToggleCheck,
   onDeleteClick,
   onTextUpdate,
 }) {
+  const handleIsCompleteChange = useCallback(
+    (event) => {
+      onToggleCheck(event.target.value)
+    },
+    [onToggleCheck]
+  )
+
+  const handleTextChange = useCallback(
+    (event) => {
+      onTextUpdate(event.target.value)
+    },
+    [onTextUpdate]
+  )
+
+  const handleDelete = useCallback(() => {
+    onDeleteClick()
+  }, [onDeleteClick])
+
   return (
     <Card>
       <Card.Body>
@@ -21,18 +39,18 @@ export function TodoItem({
             <Col xs={1}>
               <Form.Check
                 checked={isComplete}
-                onChange={(event) => onToggleCheck(event.target.value)}
+                onChange={handleIsCompleteChange}
               />
             </Col>
             <Col xs={8}>
               <Form.Control
                 type="text"
                 value={text}
-                onChange={(event) => onTextUpdate(event.target.value)}
+                onChange={handleTextChange}
               />
             </Col>
             <Col xs={3}>
-              <Button type="button" onClick={onDeleteClick}>
+              <Button type="button" onClick={handleDelete}>
                 Remove
               </Button>
             </Col>
@@ -42,3 +60,5 @@ export function TodoItem({
     </Card>
   )
 }
+
+export const TodoItem = memo(TodoItemInner)

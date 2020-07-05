@@ -1,10 +1,12 @@
-import React, { useContext } from 'react'
+import React, { memo, useContext } from 'react'
 
 import { TodoList } from './TodoList'
 import { TodoContext } from '../../state'
 
-export function TodoListContainer() {
+function TodoListContainerInner() {
   const { todoState } = useContext(TodoContext)
 
   return <TodoList items={todoState} />
 }
+
+export const TodoListContainer = memo(TodoListContainerInner)

@@ -1,17 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, memo, useCallback } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 import './TodoForm.css'
 
-export function TodoForm({ onSubmit }) {
+function TodoFormInner({ onSubmit }) {
   const [text, setText] = useState('')
-  function handleChange(value) {
-    setText(value)
-  }
-  function handleSubmit() {
+  const handleChange = useCallback(
+    (text) => {
+      setText(text)
+    },
+    [setText]
+  )
+  const handleSubmit = useCallback(() => {
     onSubmit(text)
-  }
+  }, [text, onSubmit])
+
   return (
     <div className="todo-form__form-container">
       <Form>
@@ -32,3 +36,5 @@ export function TodoForm({ onSubmit }) {
     </div>
   )
 }
+
+export const TodoForm = memo(TodoFormInner)

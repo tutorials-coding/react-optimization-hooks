@@ -1,16 +1,22 @@
-import React, { useContext } from 'react'
+import React, { useCallback, memo, useContext } from 'react'
 
 import { TodoItem } from './TodoItem'
 import { TodoContext } from '../../state'
 
-export function TodoItemContainer({ item }) {
+function TodoItemContainerInner({ item }) {
   const { dispatchTodo } = useContext(TodoContext)
 
-  const editTodoItemText = (value) => {
-    dispatchTodo({ type: 'updateText', payload: { id: item.id, text: value } })
-  }
+  const editTodoItemText = useCallback(
+    (value) => {
+      dispatchTodo({
+        type: 'updateText',
+        payload: { id: item.id, text: value },
+      })
+    },
+    [item, dispatchTodo]
+  )
 
-  const toggleItemCheck = () => {
+  const toggleItemCheck = useCallback(() => {
     dispatchTodo({
       type: 'updateIsComplete',
       payload: {
@@ -18,11 +24,16 @@ export function TodoItemContainer({ item }) {
         isComplete: !item.isComplete,
       },
     })
-  }
+  }, [item, dispatchTodo])
 
-  const deleteItem = () => {
-    dispatchTodo({ type: 'delete', payload: { id: item.id } })
-  }
+  const deleteItem = useCallback(() => {
+    dispatchTodo({
+      type: 'delete',
+      payload: {
+        id: item.id,
+      },
+    })
+  }, [item, dispatchTodo])
 
   return (
     <TodoItem
@@ -34,3 +45,5 @@ export function TodoItemContainer({ item }) {
     />
   )
 }
+
+export const TodoItemContainer = memo(TodoItemContainerInner)

@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
 import './Home.css'
 import { TodoListContainer, TodoFormContainer } from '../components'
 
-export function Home() {
+const HomeInner = () => {
   return (
     <>
       <div className="d-flex justify-content-center home__title-container">
@@ -26,3 +26,5 @@ export function Home() {
     </>
   )
 }
+
+export const Home = memo(HomeInner)

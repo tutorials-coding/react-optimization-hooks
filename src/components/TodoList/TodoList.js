@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 import './TodoList.css'
 import { TodoItemContainer } from '../TodoItem'
 
-export function TodoList({ items }) {
+function TodoListInner({ items }) {
   return (
     <div>
       {items.map((item) => (
@@ -14,3 +14,5 @@ export function TodoList({ items }) {
     </div>
   )
 }
+
+export const TodoList = memo(TodoListInner)

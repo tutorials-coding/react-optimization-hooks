@@ -1,14 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useCallback, memo, useContext } from 'react'
 
 import { TodoForm } from './TodoForm'
 import { TodoContext } from '../../state'
 
-export function TodoFormContainer() {
+function TodoFormContainerInner() {
   const { dispatchTodo } = useContext(TodoContext)
 
-  function handleSubmit(text) {
-    dispatchTodo({ type: 'add', payload: { text } })
-  }
+  const handleSubmit = useCallback(
+    (text) => {
+      dispatchTodo({ type: 'add', payload: { text } })
+    },
+    [dispatchTodo]
+  )
 
   return <TodoForm onSubmit={handleSubmit} />
 }
+TodoFormContainerInner.whyDidYouRender = true
+
+export const TodoFormContainer = memo(TodoFormContainerInner)
